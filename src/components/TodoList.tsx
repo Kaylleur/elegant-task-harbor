@@ -13,8 +13,8 @@ interface TodoListProps {
 const TodoList = ({ todos, onToggle, onRemove, onUpdate }: TodoListProps) => {
   if (todos.length === 0) {
     return (
-      <div className="text-center py-10 text-gray-500">
-        <p>Your todo list is empty. Add some tasks to get started!</p>
+      <div className="text-center py-6 text-gray-500 dark:text-gray-400">
+        <p>No tasks in this section.</p>
       </div>
     );
   }

@@ -31,19 +31,29 @@ const TodoItem = ({ todo, onToggle, onRemove, onUpdate }: TodoItemProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow gap-3 group">
+    <div className={cn(
+      "flex items-center justify-between p-4 rounded-lg transition-all gap-3 group",
+      todo.completed 
+        ? "bg-green-50/80 dark:bg-green-900/20 border border-green-100 dark:border-green-900 hover:shadow-md" 
+        : "bg-white/80 dark:bg-gray-800/80 border border-purple-100 dark:border-purple-900 hover:shadow-md"
+    )}>
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <Checkbox
           checked={todo.completed}
           onCheckedChange={() => onToggle(todo.id)}
-          className="h-5 w-5"
+          className={cn(
+            "h-5 w-5 transition-colors",
+            todo.completed 
+              ? "border-green-500 data-[state=checked]:bg-green-500" 
+              : "border-purple-400 data-[state=checked]:bg-purple-500"
+          )}
         />
         
         {isEditing ? (
           <Input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="flex-1"
+            className="flex-1 bg-white dark:bg-gray-700"
             autoFocus
             onKeyDown={(e) => {
               if (e.key === "Enter") handleUpdate();
@@ -53,8 +63,10 @@ const TodoItem = ({ todo, onToggle, onRemove, onUpdate }: TodoItemProps) => {
         ) : (
           <span
             className={cn(
-              "flex-1 text-sm text-gray-700 truncate",
-              todo.completed && "line-through text-gray-400"
+              "flex-1 text-sm truncate transition-all",
+              todo.completed 
+                ? "line-through text-green-700 dark:text-green-400" 
+                : "text-gray-800 dark:text-gray-200"
             )}
           >
             {todo.text}
@@ -64,10 +76,20 @@ const TodoItem = ({ todo, onToggle, onRemove, onUpdate }: TodoItemProps) => {
 
       {isEditing ? (
         <div className="flex gap-1">
-          <Button size="icon" variant="ghost" onClick={handleUpdate}>
+          <Button 
+            size="icon" 
+            variant="ghost"
+            onClick={handleUpdate}
+            className="text-green-600 hover:text-green-700 hover:bg-green-100 dark:text-green-400 dark:hover:bg-green-900/30"
+          >
             <Check className="h-4 w-4" />
           </Button>
-          <Button size="icon" variant="ghost" onClick={handleCancel}>
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            onClick={handleCancel}
+            className="text-red-600 hover:text-red-700 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-900/30"
+          >
             <X className="h-4 w-4" />
           </Button>
         </div>
@@ -77,6 +99,7 @@ const TodoItem = ({ todo, onToggle, onRemove, onUpdate }: TodoItemProps) => {
             size="icon"
             variant="ghost"
             onClick={() => setIsEditing(true)}
+            className="text-blue-600 hover:text-blue-700 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-blue-900/30"
           >
             <Pencil className="h-4 w-4" />
           </Button>
@@ -84,6 +107,7 @@ const TodoItem = ({ todo, onToggle, onRemove, onUpdate }: TodoItemProps) => {
             size="icon"
             variant="ghost"
             onClick={() => onRemove(todo.id)}
+            className="text-red-600 hover:text-red-700 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-900/30"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
