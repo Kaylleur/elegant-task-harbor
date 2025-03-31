@@ -60,6 +60,11 @@ const TodoItem = ({ task, todoListId, onToggle, onRemove, onUpdate }: TodoItemPr
         ? "bg-green-50/80 dark:bg-green-900/20 border border-green-100 dark:border-green-900 hover:shadow-md" 
         : "bg-white/80 dark:bg-gray-800/80 border border-purple-100 dark:border-purple-900 hover:shadow-md"
     )}>
+      <Collapsible
+          open={isExpanded}
+          onOpenChange={setIsExpanded} // Si besoin de gérer l'ouverture/fermeture
+          className="w-full"
+      >
       <div className="flex items-center justify-between p-4 gap-3 group">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <Checkbox
@@ -162,19 +167,47 @@ const TodoItem = ({ task, todoListId, onToggle, onRemove, onUpdate }: TodoItemPr
         )}
       </div>
 
-      <Collapsible open={isExpanded} className="w-full">
+        {/* Tout l'entête, y compris le bouton trigger */}
+        <div className="flex items-center justify-between p-4 gap-3 group">
+          {/* Partie gauche (Checkbox, titre, etc.) */}
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            ...
+          </div>
+
+          {/* Icons de droite */}
+          <div className="flex gap-1">
+            ...
+            <CollapsibleTrigger asChild>
+              <Button
+                  size="icon"
+                  variant="ghost"
+                  // plus besoin du onClick={() => setIsExpanded(!isExpanded)}
+                  // car Radix s'en occupe automatiquement
+              >
+                {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              </Button>
+            </CollapsibleTrigger>
+          </div>
+        </div>
+
+        {/* Contenu qui s'affiche ou se masque */}
         <CollapsibleContent className="px-4 pb-4 pt-0">
           {task.description ? (
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{task.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                {task.description}
+              </p>
           ) : (
-            <p className="text-sm text-gray-400 dark:text-gray-500 italic mb-2">No description</p>
+              <p className="text-sm text-gray-400 dark:text-gray-500 italic mb-2">
+                No description
+              </p>
           )}
-          
+
           <div className="text-xs text-gray-500 dark:text-gray-400">
             Created: {format(new Date(task.createdAt), "PPP")}
           </div>
         </CollapsibleContent>
       </Collapsible>
+
     </div>
   );
 };
