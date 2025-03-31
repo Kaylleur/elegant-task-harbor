@@ -1,9 +1,8 @@
-
 import { useState } from "react";
-import { Task } from "@/types/todo";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Task } from "@front/types/todo";
+import { Checkbox } from "@front/components/ui/checkbox";
+import { Button } from "@front/components/ui/button";
+import { Input } from "@front/components/ui/input";
 import { 
   Pencil, 
   Trash2, 
@@ -14,10 +13,10 @@ import {
   ChevronUp,
   AlertTriangle
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@front/lib/utils";
 import { format } from "date-fns";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Badge } from "@/components/ui/badge";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@front/components/ui/collapsible";
+import { Badge } from "@front/components/ui/badge";
 
 interface TodoItemProps {
   task: Task;

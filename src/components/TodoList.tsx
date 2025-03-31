@@ -1,5 +1,5 @@
 
-import { Task } from "@/types/todo";
+import { Task } from "@front/types/todo";
 import TodoItem from "./TodoItem";
 import { AnimatePresence, motion } from "framer-motion";
 

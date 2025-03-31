@@ -1,21 +1,20 @@
-
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@front/components/ui/input";
+import { Button } from "@front/components/ui/button";
 import { Plus, Calendar } from "lucide-react";
-import { Task } from "@/types/todo";
+import { Task } from "@front/types/todo";
 import { 
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+} from "@front/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@front/components/ui/popover";
+import { Calendar as CalendarComponent } from "@front/components/ui/calendar";
 import { format } from "date-fns";
-import { Textarea } from "@/components/ui/textarea";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Textarea } from "@front/components/ui/textarea";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@front/components/ui/collapsible";
 
 interface TodoFormProps {
   onAddTask: (task: Task) => void;

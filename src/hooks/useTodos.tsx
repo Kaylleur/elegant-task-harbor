@@ -1,6 +1,13 @@
 
 import { useState } from "react";
-import { Todo } from "@/types/todo";
+import { Task } from "@front/types/todo";
+
+interface Todo {
+  id: string;
+  text: string;
+  completed: boolean;
+  createdAt: Date;
+}
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);

@@ -1,7 +1,7 @@
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@front/components/ui/input";
+import { Button } from "@front/components/ui/button";
 import { Plus } from "lucide-react";
 
 interface TodoListFormProps {
