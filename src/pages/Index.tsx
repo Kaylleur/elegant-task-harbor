@@ -1,12 +1,11 @@
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import TodoForm from "@/components/TodoForm";
-import TodoList from "@/components/TodoList";
-import TodoListForm from "@/components/TodoListForm";
-import { useTodoLists } from "@/hooks/useTodoLists";
-import { Task } from "@/types/todo";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@front/components/ui/card";
+import TodoForm from "@front/components/TodoForm";
+import TodoList from "@front/components/TodoList";
+import TodoListForm from "@front/components/TodoListForm";
+import { useTodoLists } from "@front/hooks/useTodoLists";
+import { Task } from "@front/types/todo";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@front/components/ui/tabs";
+import { Button } from "@front/components/ui/button";
 import { Trash2, MoreHorizontal, Edit } from "lucide-react";
 import { useState } from "react";
 import { 
@@ -14,9 +13,9 @@ import {
   DropdownMenuContent, 
   DropdownMenuItem, 
   DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+} from "@front/components/ui/dropdown-menu";
+import { Input } from "@front/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@front/components/ui/dialog";
 
 const Index = () => {
   const {
@@ -33,7 +32,6 @@ const Index = () => {
   const [activeList, setActiveList] = useState<string | null>(null);
   const [editingList, setEditingList] = useState<{ id: string, name: string } | null>(null);
 
-  // Set the first todo list as active if none is selected and lists are available
   if (!activeList && todoLists.length > 0 && !isLoading) {
     setActiveList(todoLists[0]._id);
   }
@@ -81,7 +79,6 @@ const Index = () => {
     }
   };
 
-  // Get the current active todo list
   const currentTodoList = todoLists.find(list => list._id === activeList);
   
   const activeTasks = currentTodoList?.tasks?.filter(task => !task.done) || [];
