@@ -1,17 +1,18 @@
 
-import { Todo } from "@/types/todo";
+import { Task } from "@/types/todo";
 import TodoItem from "./TodoItem";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface TodoListProps {
-  todos: Todo[];
-  onToggle: (id: string) => void;
-  onRemove: (id: string) => void;
-  onUpdate: (id: string, text: string) => void;
+  tasks: Task[];
+  todoListId: string;
+  onToggle: (todoListId: string, taskId: string, task: Task) => void;
+  onRemove: (todoListId: string, taskId: string) => void;
+  onUpdate: (todoListId: string, taskId: string, task: Task) => void;
 }
 
-const TodoList = ({ todos, onToggle, onRemove, onUpdate }: TodoListProps) => {
-  if (todos.length === 0) {
+const TodoList = ({ tasks, todoListId, onToggle, onRemove, onUpdate }: TodoListProps) => {
+  if (tasks.length === 0) {
     return (
       <div className="text-center py-6 text-gray-500 dark:text-gray-400">
         <p>No tasks in this section.</p>
@@ -22,16 +23,17 @@ const TodoList = ({ todos, onToggle, onRemove, onUpdate }: TodoListProps) => {
   return (
     <div className="space-y-3">
       <AnimatePresence>
-        {todos.map((todo) => (
+        {tasks.map((task) => (
           <motion.div
-            key={todo.id}
+            key={task._id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
           >
             <TodoItem
-              todo={todo}
+              task={task}
+              todoListId={todoListId}
               onToggle={onToggle}
               onRemove={onRemove}
               onUpdate={onUpdate}
