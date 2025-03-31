@@ -1,6 +1,6 @@
 
-import { Task, TodoList } from "@/types/todo";
-import { toast } from "@/components/ui/use-toast";
+import { Task, TodoList } from "@front/types/todo";
+import { toast } from "@front/hooks/use-toast";
 
 const API_URL = "http://localhost:3000/api";
 

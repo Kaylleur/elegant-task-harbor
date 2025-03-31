@@ -1,8 +1,7 @@
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoListApi } from "@front/services/api";
 import { Task, TodoList } from "@front/types/todo";
-import { toast } from "@front/components/ui/use-toast";
+import { toast } from "@front/hooks/use-toast";
 
 export const useTodoLists = () => {
   const queryClient = useQueryClient();
