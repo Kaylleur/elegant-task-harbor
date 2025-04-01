@@ -16,6 +16,7 @@ import {
 } from "@front/components/ui/dropdown-menu";
 import { Input } from "@front/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@front/components/ui/dialog";
+import TaskStatsHeader from "@front/components/TaskStatsHeader.tsx";
 
 const Index = () => {
   const {
@@ -84,6 +85,8 @@ const Index = () => {
   const activeTasks = currentTodoList?.tasks?.filter(task => !task.done) || [];
   const completedTasks = currentTodoList?.tasks?.filter(task => task.done) || [];
 
+
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 dark:from-gray-900 dark:to-purple-950 py-8 px-4 md:py-12">
@@ -101,6 +104,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 dark:from-gray-900 dark:to-purple-950 py-8 px-4 md:py-12">
       <div className="container max-w-4xl mx-auto">
+        <TaskStatsHeader />
         <Card className="border-none shadow-xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-md mb-6">
           <CardHeader className="pb-3 border-b border-purple-100 dark:border-purple-900">
             <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">

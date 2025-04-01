@@ -27,6 +27,17 @@ export const todoListApi = {
     }
   },
 
+  // Get stats for tasks by priority
+  getTaskStatsByPriority: async (): Promise<PriorityStats[]> => {
+    try {
+      const response = await fetch(`${API_URL}/todolists/stats`);
+      if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+      return await response.json();
+    } catch (error) {
+      return handleError(error);
+    }
+  },
+
   // Get a specific todo list
   getTodoList: async (id: string): Promise<TodoList> => {
     try {
